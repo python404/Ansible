@@ -1,0 +1,11 @@
+- name: restart iptables
+  service: name=iptables state=restarted
+
+- name: get module
+  command: r1soft-setup --get-module
+  ignore_errors: True     
+
+- name: restart service    # agent service restart
+  shell: /etc/init.d/cdp-agent restart
+- name: get a key 
+  command: r1soft-setup --get-key http://ip:8080
